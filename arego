@@ -1,0 +1,2240 @@
+// 1 Create a body mass index (BMI) calculator application that reads the user’s weight in kilograms and height in meters, then calculates and displays the user’s body mass index. The formula for calculating BMI is: 𝐵𝑀𝐼 =  𝑤𝑒𝑖𝑔ℎ𝑡𝐼𝑛𝐾𝑖𝑙𝑜𝑔𝑟𝑎𝑚𝑠  ℎ𝑒𝑖𝑔ℎ𝑡𝐼𝑛𝑀𝑒𝑡𝑒𝑟𝑠 ∗ ℎ𝑒𝑖𝑔ℎ𝑡𝐼𝑛𝑀𝑒𝑡𝑒𝑟𝑠 A healthy BMI score is between 20 and 25
+#include <stdio.h>
+
+int main() {
+    // Declare variables to store weight and height
+    float weight_kg, height_m, bmi;
+
+    // Input weight in kilograms
+    printf("Enter your weight in kilograms: ");
+    scanf("%f", &weight_kg);
+
+    // Input height in meters
+    printf("Enter your height in meters: ");
+    scanf("%f", &height_m);
+
+    // Calculate BMI
+    bmi = weight_kg / (height_m * height_m);
+
+    // Display BMI
+    printf("Your BMI is: %.2f\n", bmi) ;
+    printf("Your Healthy Weight must be between 51.20 - 64.00 ") ;
+
+ 
+    return 0;
+}
+
+//2 that will determine whether a department store customer has exceeded the credit limit on a charge account. For each customer, the following facts are available: a)	Account number b)	Balance at the beginning of the month c)	Total of all items charged by this customer this month d)	Total of all credits applied to this customer's account this month    e)Allowed credit limit
+#include<stdio.h>
+int main() {
+	float account, beg_balance, charge, credits, limit, new_balance;
+	printf("Enter account number (-1 to end): ");
+	scanf_s("%f", &account);
+	printf("Enter brginning balance: ");
+	scanf_s("%f", &beg_balance);
+	printf("Enter total charges: ");
+	scanf_s("%f", &charge);
+	printf("Enter total credits: ");
+	scanf_s("%f", &credits);
+	printf("Enter credit limit: ");
+	scanf_s("%f", &limit);
+
+	new_balance = beg_balance + charge - credits;
+
+	printf("Account: %f \n", account);
+	printf("Credit limit: %f\n", limit);
+	printf("Balance: %f\n", new_balance);
+	if (new_balance > limit) {
+		printf("Credit limit exceeded");
+
+	}
+	else
+	{
+		return 0;
+	}
+	
+}
+// 3 that calculates and prints the average of several integers. Assume the last value read with scanf is the sentinel 9999. A typical input sequence might be 10 8 11 7 9 9999 indicating that the average of all the values preceding 9999 is to be calculated.
+#include<stdio.h>
+int main() {
+
+	int i = 0, n;    
+	float avg_value = 0, sum = 0;
+	printf("Enter numbers to calculate the avarage (9999 to exit):\n");
+	scanf("%d", &n);
+	while (n != 9999) {
+		sum += n;
+		i++;        scanf("%d", &n);
+	}        if (i)
+		avg_value = (float)sum / i;
+	printf("\nThe average value of the said numbers is %f\n", avg_value);
+	return 0;
+}
+// 4 diamond shape.You may use printf statements that print either a single asterisk (*) or a single blank. Maximize your use of iteration (with nested for statements) and minimize the number of printf statements.
+#include<stdio.h>
+int main()
+{
+    int n, i, j;
+
+    printf("Enter number of rows\n");
+    scanf_s("%d", &n);
+
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= n - i; j++)
+            printf(" ");
+
+        for (j = 1; j <= 2 * i - 1; j++)
+            printf("*");
+
+        printf("\n");
+    }
+
+    for (i = 1; i <= n - 1; i++)
+    {
+        for (j = 1; j <= i; j++)
+            printf(" ");
+
+        for (j = 1; j <= 2 * (n - i) - 1; j++)
+            printf("*");
+
+        printf("\n");
+    }
+
+    return 0;
+}
+// 5 from last Taskto read an odd number in the range 1 to 19 (user entered it) to specify the number of rows in the diamond. Your program should then display a diamond of the appropriate size.
+#include<stdio.h>
+int main()
+{
+    int n, i, j;
+    printf("Enter an odd number between 1 and 19: ");
+    scanf_s("%d", &n); 
+ 
+    if (n < 1 || n > 19 || n % 2 == 0)
+    {
+        printf("Invalid input. Please enter an odd number between 1 and 19.\n");
+        return 1;
+    }
+    
+    for (i = 1; i <= n; i++)
+    {
+        
+        for (j = 1; j <= n - i; j++)
+        { 
+            printf(" "); 
+        }
+        
+        for (j = 1; j <= 2 * i - 1; j++)
+        {
+            printf("*"); 
+        }
+       
+        printf("\n"); 
+    }
+    
+    for (i = n - 1; i >= 1; i--)
+    {
+       
+        for (j = 1; j <= n - i; j++)
+        {
+            printf(" ");
+        }
+        
+        for (j = 1; j <= 2 * i - 1; j++)
+        {
+            printf("*");
+        }
+        
+        printf("\n");
+    }
+    return 0;
+}
+//6 An integer number is said to be a perfect number if its factors, including 1 (but not the number itself), sum to the number. For example, 6 is a perfect number because 6 = 1 + 2 + 3. Write a function isPerfect that determines whether parameter number is a perfect number. Use this function in a program that determines and prints all the perfect numbers between 1 and 1000. Print the factors of each perfect number to confirm that the number is indeed perfect.
+#include <stdio.h>
+
+// Function to check if a number is a perfect number
+int isPerfect(int number) {
+    int sum = 0;
+    // Find factors and calculate the sum
+    for (int i = 1; i < number; i++) {
+        if (number % i == 0) {
+            sum += i;
+        }
+    }
+    // Check if the sum of factors equals the number
+    return sum == number;
+}
+
+int main() {
+    // Find and print all perfect numbers between 1 and 1000
+    for (int num = 1; num <= 1000; num++) {
+        if (isPerfect(num)) {
+            // Print the perfect number
+            printf("%d is a perfect number with factors: 1", num);
+            // Print the factors
+            for (int i = 2; i < num; i++) {
+                if (num % i == 0) {
+                    printf(" + %d", i);
+                }
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
+
+//7  The greatest common divisor (GCD) of two integers is the largest integer that evenly divides each of the two numbers. Write a function gcd that returns the greatest common divisor of two integers.
+#include<stdio.h>
+#include <stdio.h>
+
+// Function to calculate the greatest common divisor (GCD) of two integers
+int gcd(int a, int b) {
+    // Euclidean algorithm to find GCD
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int main() {
+    int num1, num2;
+
+    // Input two integers
+    printf("Enter first integer: ");
+    scanf("%d", &num1);
+
+    printf("Enter second integer: ");
+    scanf("%d", &num2);
+
+    // Calculate and print the GCD
+    int result = gcd(num1, num2);
+    printf("The GCD of %d and %d is: %d\n", num1, num2, result);
+
+    return 0;
+}
+//8  The greatest common divisor of integers x and y is the largest integer that evenly divides both x and y. Write a recursive function gcd that returns the greatest common divisor of x and y. The gcd of x and y is defined recursively as follows: If y is  equal to 0, then gcd(x, y) is x; otherwise gcd(x, y) is gcd(y, x % y), where % is the remainder operator.
+#include <stdio.h>
+
+int gcd(int x, int y) {
+    if (y == 0)
+        return x;
+    else
+        return gcd(y, x % y);
+}
+
+int main() {
+    int x, y;
+    printf("Enter two integers: ");
+    scanf_s("%d %d", &x, &y);
+    printf("Greatest common divisor of %d and %d is: %d\n", x, y, gcd(x, y));
+    return 0;
+}
+//9 Write a program in C to separate odd and even integers in separate arrays
+#include <stdio.h>
+
+int main() {
+    int size;
+
+    // Input the size of the array
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    int originalArray[size];
+    int oddArray[size];
+    int evenArray[size];
+
+    int oddCount = 0;
+    int evenCount = 0;
+
+    // Input elements into the original array
+    printf("Enter %d integers:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &originalArray[i]);
+    }
+
+    // Separate odd and even integers
+    for (int i = 0; i < size; i++) {
+        if (originalArray[i] % 2 == 0) {
+            // Even number
+            evenArray[evenCount] = originalArray[i];
+            evenCount++;
+        } else {
+            // Odd number
+            oddArray[oddCount] = originalArray[i];
+            oddCount++;
+        }
+    }
+
+    // Print the separated arrays
+    printf("\nOdd integers: ");
+    for (int i = 0; i < oddCount; i++) {
+        printf("%d ", oddArray[i]);
+    }
+
+    printf("\nEven integers: ");
+    for (int i = 0; i < evenCount; i++) {
+        printf("%d ", evenArray[i]);
+    }
+
+    return 0;
+}
+//10 Write a program in C to count the frequency of each element of an array
+#include <stdio.h>
+
+int main() {
+    int size;
+
+    // Input the size of the array
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    int array[size];
+
+    // Input elements into the array
+    printf("Enter %d integers:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    // Count the frequency of each element
+    int frequency[size];
+    for (int i = 0; i < size; i++) {
+        frequency[i] = -1; // Initialize frequency array with -1
+    }
+
+    for (int i = 0; i < size; i++) {
+        int count = 1;
+        for (int j = i + 1; j < size; j++) {
+            if (array[i] == array[j]) {
+                count++;
+                frequency[j] = 0; // Mark the element as counted
+            }
+        }
+        if (frequency[i] != 0) {
+            frequency[i] = count;
+        }
+    }
+
+    // Print the frequency of each element
+    printf("\nElement\tFrequency\n");
+    for (int i = 0; i < size; i++) {
+        if (frequency[i] != 0) {
+            printf("%d\t%d\n", array[i], frequency[i]);
+        }
+    }
+
+    return 0;
+}
+//11 There are 2 matrices. It is necessary to multiply them.int firstMatrix[3][2] = {{1, 4}, {2, 5}, {3, 6}}; int secondMatrix[2][3] = {{7, 8, 9}, {10, 11, 12}};
+#include <stdio.h>
+
+int main() {
+    int firstMatrix[3][2] = { {1, 4}, {2, 5}, {3, 6} };
+    int secondMatrix[2][3] = { {7, 8, 9}, {10, 11, 12} };
+    int resultMatrix[2][2];
+    
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            resultMatrix[i][j] = 0;
+            for (int k = 0; k < 3; k++) {
+                resultMatrix[i][j] += firstMatrix[k][i] * secondMatrix[j][k];
+            }
+        }
+    }
+    
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("%d ", resultMatrix[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+// 12 We have 2D array . Write a program for finding row and column with max sum .
+#include <stdio.h>
+
+int main() {
+    int rows, cols;
+
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    int matrix[rows][cols];
+
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    int maxRowSum = 0, maxColSum = 0;
+    int rowIndex = 0, colIndex = 0;
+
+    for (int i = 0; i < rows; i++) {
+        int rowSum = 0;
+        for (int j = 0; j < cols; j++) {
+            rowSum += matrix[i][j];
+        }
+        if (rowSum > maxRowSum) {
+            maxRowSum = rowSum;
+            rowIndex = i;
+        }
+    }
+
+    for (int j = 0; j < cols; j++) {
+        int colSum = 0;
+        for (int i = 0; i < rows; i++) {
+            colSum += matrix[i][j];
+        }
+        if (colSum > maxColSum) {
+            maxColSum = colSum;
+            colIndex = j;
+        }
+    }
+
+    printf("Row with the maximum sum: %d\n", rowIndex);
+    printf("Column with the maximum sum: %d\n", colIndex);
+
+    return 0;
+}
+// 13Write a program in C to print the elements of an array in reverse order using pointers
+#include <stdio.h>
+
+void printArrayReverse(int *arr, int size) {
+    int *ptr = arr + size - 1;
+    
+    printf("Elements of the array in reverse order: ");
+    while (ptr >= arr) {
+        printf("%d ", *ptr);
+        ptr--;
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printArrayReverse(arr, size);
+    
+    return 0;
+}
+// 14Create function for coping string without using strcpy () Function prototype :char *my_strcpy(char *dest, const char *src)
+#include <stdio.h>
+
+char *my_strcpy(char *dest, const char *src) {
+    char *original_dest = dest; // Store the original destination address
+
+    while (*src != '\0') {
+        *dest = *src;
+        dest++;
+        src++;
+    }
+
+  
+    *dest = '\0';
+
+    return original_dest; 
+}
+
+int main() {
+    char source[] = "Hello, World!";
+    char destination[50];
+
+    my_strcpy(destination, source);
+
+    printf("Source: %s\n", source);
+    printf("Destination: %s\n", destination);
+
+    return 0;
+}
+// 15Function to Compare Two Strings without using strcmp () Function prototype : int my_strcmp (char *str1, char *str2)
+#include <stdio.h>
+
+int my_strcmp(const char *str1, const char *str2) {
+    // Compare characters until a difference is found or both strings end
+    while (*str1 == *str2) {
+        if (*str1 == '\0') {
+            return 0; // Strings are equal
+        }
+        str1++;
+        str2++;
+    }
+
+    // Return the ASCII difference between the first differing characters
+    return *str1 - *str2;
+}
+
+int main() {
+    char str1[] = "Hello";
+    char str2[] = "World";
+
+    int result = my_strcmp(str1, str2);
+
+    if (result == 0) {
+        printf("Strings are equal.\n");
+    } else if (result < 0) {
+        printf("str1 is less than str2.\n");
+    } else {
+        printf("str1 is greater than str2.\n");
+    }
+
+    return 0;
+}
+//16Write a program in C to split string by space into words
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    char *token = strtok(str, " ");
+    
+    printf("Strings or words after split by space are:\n");
+    while (token != NULL) {
+        printf("%s\n", token);
+        token = strtok(NULL, " ");
+    }
+    
+    return 0;
+}
+// 17Create a dynamic string, using standard library function, initialize (strcpy) and after resize in concatenate
+(strcat) with other string Output
+String = tutorial, Address = 355090448
+String = tutorial.com, Address = 355090448
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    char* str = (char*) malloc(sizeof(char) * 10);
+    strcpy(str, "tutorial");
+    printf("String = %s, Address = %p\n", str, str);
+
+    str = (char*) realloc(str, sizeof(char) * 15);
+    strcat(str, ".com");
+    printf("String = %s, Address = %p\n", str, str);
+
+    free(str);
+    return 0;
+}
+//18 Create a dynamic array with real elements and finding their sum, after that resize the array and output second sum
+// Output Enter the total number of elements: 3 Enter Number 1: 1 Enter Number 2: 2 Enter Number 3: 3 Sum1 = 6.00 How many elements you want add? 2 Enter Number 4: 3 Enter Number 5: 4 Sum2 = 13.00
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, i;
+    float sum1 = 0, sum2 = 0;
+
+    printf("Enter the total number of elements: ");
+    scanf("%d", &n);
+
+    // Create a dynamic array with real elements
+    float* arr = (float*) malloc(sizeof(float) * n);
+    
+    // Input elements and find the first sum
+    for (i = 0; i < n; i++) {
+        printf("Enter Number %d: ", i+1);
+        scanf("%f", &arr[i]);
+        sum1 += arr[i];
+    }
+    
+    printf("Sum1 = %.2f\n", sum1);
+
+    // Resize the array
+    int m;
+    printf("How many elements you want to add? ");
+    scanf("%d", &m);
+    
+    arr = (float*) realloc(arr, sizeof(float) * (n + m));
+    
+    // Input additional elements and find the second sum
+    for (i = n; i < n + m; i++) {
+        printf("Enter Number %d: ", i+1);
+        scanf("%f", &arr[i]);
+        sum2 += arr[i];
+    }
+    
+    printf("Sum2 = %.2f\n", sum2);
+
+    // Free the memory allocated for the array
+    free(arr);
+
+    return 0;
+}
+// 19 User entered 10 students data, and after that, according GPA program fill beststudent structure and
+// output the values.struct student { int GPA; char sName[130]; } st[10]; struct beststudents { struct student first; struct student second; struct student third; } bs;
+#include <stdio.h>
+#include <string.h>
+
+struct student {
+    int GPA;
+    char sName[130];
+};
+
+struct beststudents {
+    struct student first;
+    struct student second;
+    struct student third;
+};
+
+int main() {
+    struct student st[10];
+    struct beststudents bs;
+    
+    // Input data for 10 students
+    for (int i = 0; i < 10; i++) {
+        printf("Enter GPA for student %d: ", i+1);
+        scanf("%d", &st[i].GPA);
+        printf("Enter name for student %d: ", i+1);
+        scanf("%s", st[i].sName);
+    }
+    
+    // Find the three students with the highest GPA
+    bs.first = st[0];
+    bs.second = st[0];
+    bs.third = st[0];
+    
+    for (int i = 1; i < 10; i++) {
+        if (st[i].GPA > bs.first.GPA) {
+            bs.third = bs.second;
+            bs.second = bs.first;
+            bs.first = st[i];
+        } else if (st[i].GPA > bs.second.GPA) {
+            bs.third = bs.second;
+            bs.second = st[i];
+        } else if (st[i].GPA > bs.third.GPA) {
+            bs.third = st[i];
+        }
+    }
+    
+    // Output the values of the best students
+    printf("Best Student 1:\n");
+    printf("GPA: %d\n", bs.first.GPA);
+    printf("Name: %s\n", bs.first.sName);
+    
+    printf("Best Student 2:\n");
+    printf("GPA: %d\n", bs.second.GPA);
+    printf("Name: %s\n", bs.second.sName);
+    
+    printf("Best Student 3:\n");
+    printf("GPA: %d\n", bs.third.GPA);
+    printf("Name: %s\n", bs.third.sName);
+
+    return 0;
+}
+//20 Program asks the user to store the value of noOfRecords and allocates the memory for thenoOfRecords structure variables dynamically using the malloc() function. User entered students data, and after that, according GPA program fill beststudent structure and output the values. struct student { int GPA; char sName[130]; }; struct beststudents { struct student first; struct student second; struct student third; };
+#include <stdio.h>
+#include <stdlib.h>
+
+struct student {
+    int GPA;
+    char sName[130];
+};
+
+struct beststudents {
+    struct student first;
+    struct student second;
+    struct student third;
+};
+
+int main() {
+    int noOfRecords;
+    printf("Enter the number of student records: ");
+    scanf("%d", &noOfRecords);
+
+    // Dynamically allocate memory for the student records
+    struct student *records = (struct student *)malloc(noOfRecords * sizeof(struct student));
+
+    // Input the student records
+    for (int i = 0; i < noOfRecords; i++) {
+        printf("Enter student name: ");
+        scanf("%s", records[i].sName);
+        printf("Enter student GPA: ");
+        scanf("%d", &records[i].GPA);
+    }
+
+    // Find the top 3 students based on GPA
+    struct beststudents topStudents;
+    topStudents.first = records[0];
+    topStudents.second = records[0];
+    topStudents.third = records[0];
+
+    for (int i = 1; i < noOfRecords; i++) {
+        if (records[i].GPA > topStudents.first.GPA) {
+            topStudents.third = topStudents.second;
+            topStudents.second = topStudents.first;
+            topStudents.first = records[i];
+        } else if (records[i].GPA > topStudents.second.GPA) {
+            topStudents.third = topStudents.second;
+            topStudents.second = records[i];
+        } else if (records[i].GPA > topStudents.third.GPA) {
+            topStudents.third = records[i];
+        }
+    }
+
+    // Output the top 3 students
+    printf("\nTop 3 Students:\n");
+    printf("1. Name: %s, GPA: %d\n", topStudents.first.sName, topStudents.first.GPA);
+    printf("2. Name: %s, GPA: %d\n", topStudents.second.sName, topStudents.second.GPA);
+    printf("3. Name: %s, GPA: %d\n", topStudents.third.sName, topStudents.third.GPA);
+
+    // Free the dynamically allocated memory
+    free(records);
+
+    return 0;
+}
+// 21 Write functions to check Armstrong and Perfect numbers. Place code to another c file and create your h file. Use functions in main Armstrong number is a number that is equal to the sum of cubes of its digits 153  (1*1*1)+(5*5*5)+(3*3*3) Perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself 28  1 + 2 + 4 + 7 + 14 = 28
+#include "functions.h"
+#include <math.h>
+
+// Function to calculate the power of a number
+int power(int base, int exponent) {
+    int result = 1;
+    for (int i = 0; i < exponent; i++) {
+        result *= base;
+    }
+    return result;
+}
+
+// Function to check if a number is an Armstrong number
+int isArmstrong(int number) {
+    int originalNumber = number;
+    int sum = 0;
+    int digits = 0;
+
+    // Count the number of digits
+    while (originalNumber != 0) {
+        originalNumber /= 10;
+        digits++;
+    }
+
+    originalNumber = number;
+
+    // Calculate the sum of cubes of digits
+    while (originalNumber != 0) {
+        int digit = originalNumber % 10;
+        sum += power(digit, digits);
+        originalNumber /= 10;
+    }
+
+    return sum == number;
+}
+
+// Function to check if a number is a Perfect number
+int isPerfect(int number) {
+    int sum = 1; // Start with 1 since every number is divisible by 1
+
+    for (int i = 2; i <= sqrt(number); i++) {
+        if (number % i == 0) {
+            sum += i;
+            if (i != (number / i)) {
+                sum += (number / i);
+            }
+        }
+    }
+
+    return sum == number;
+}
+#include <stdio.h>
+#include "functions.h"
+
+int main() {
+    int num;
+
+    // Input a number
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    // Check if the number is an Armstrong number
+    if (isArmstrong(num)) {
+        printf("%d is an Armstrong number.\n", num);
+    } else {
+        printf("%d is not an Armstrong number.\n", num);
+    }
+
+    // Check if the number is a Perfect number
+    if (isPerfect(num)) {
+        printf("%d is a Perfect number.\n", num);
+    } else {
+        printf("%d is not a Perfect number.\n", num);
+    }
+
+    return 0;
+}
+// 22 Write a simple menu driven calculator program in C that uses callbacks to perform the calculations.
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef int (*Operation)(int, int);
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int divide(int a, int b) {
+    if (b == 0) {
+        printf("Error: Division by zero\n");
+        return 0;
+    }
+    return a / b;
+}
+
+void performCalculation(Operation op) {
+    int a, b;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+    printf("Result: %d\n", op(a, b));
+}
+
+int main() {
+    int choice;
+    Operation operations[] = {add, subtract, multiply, divide};
+    
+    while (1) {
+        printf("\nMenu:\n");
+        printf("1. Add\n");
+        printf("2. Subtract\n");
+        printf("3. Multiply\n");
+        printf("4. Divide\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        
+        if (choice < 1 || choice > 5) {
+            printf("Invalid choice\n");
+            continue;
+        }
+        
+        if (choice == 5) {
+            printf("Exiting...\n");
+            break;
+        }
+        
+        performCalculation(operations[choice - 1]);
+    }
+    
+    return 0;
+}
+// 23 You have a 2D array. Please write a program for finding column's number with maximal average of elements.
+
+#include <stdio.h>
+
+int main() {
+    // Define the 2D array
+    int rows, cols;
+
+    // Get the dimensions of the array from the user
+    printf("Enter the number of rows and columns: ");
+    scanf("%d %d", &rows, &cols);
+
+    int matrix[rows][cols];
+
+    // Input elements into the matrix
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Find the column with the maximal average
+    int maxAvgCol = 0;
+    double maxAvg = 0;
+
+    for (int j = 0; j < cols; ++j) {
+        double sum = 0;
+        for (int i = 0; i < rows; ++i) {
+            sum += matrix[i][j];
+        }
+
+        double avg = sum / rows;
+
+        if (avg > maxAvg) {
+            maxAvg = avg;
+            maxAvgCol = j;
+        }
+    }
+
+    // Output the result
+    printf("Column with the maximal average: %d\n", maxAvgCol + 1);
+
+    return 0;
+}
+
+
+//24 You have a 2D array. Please write a program for finding row's number with maximall average of elements.  
+
+#include <stdio.h>
+
+int findMaxAverageRow(int matrix[][3], int rows, int cols) {
+    float maxAverage = -INFINITY;
+    int maxRow = -1;
+
+    for (int i = 0; i < rows; ++i) {
+        int rowSum = 0;
+        for (int j = 0; j < cols; ++j) {
+            rowSum += matrix[i][j];
+        }
+
+        float rowAverage = (float)rowSum / cols;
+
+        if (rowAverage > maxAverage) {
+            maxAverage = rowAverage;
+            maxRow = i;
+        }
+    }
+
+    return maxRow;
+}
+
+int main() {
+    int matrix[][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        // Add more rows as needed
+    };
+
+    int rows = sizeof(matrix) / sizeof(matrix[0]);
+    int cols = sizeof(matrix[0]) / sizeof(matrix[0][0]);
+
+    int maxRow = findMaxAverageRow(matrix, rows, cols);
+
+    printf("Row with maximum average: %d\n", maxRow);
+
+    return 0;
+}
+
+
+// 25 The algoritthm for calculating the value of the function F(n),where n is a natural number, is F(n<=1)=1
+
+#include <stdio.h>
+
+int calculateFunctionF(int n) {
+    if (n <= 1) {
+        return 1;
+    } else {
+        // Define your function here
+        // For example, F(n) = 2 * F(n-1) + 3 * F(n-2)
+        // Modify this part based on your specific function
+        return 2 * calculateFunctionF(n - 1) + 3 * calculateFunctionF(n - 2);
+    }
+}
+
+int main() {
+    int n;
+    
+    // Get user input for n
+    printf("Enter a natural number (n): ");
+    scanf("%d", &n);
+
+    // Call the function and print the result
+    int result = calculateFunctionF(n);
+    printf("F(%d) = %d\n", n, result);
+
+    return 0;
+}
+
+// 26 User enters x and n=1..3(number of action), using switch construction, calculate and output the answer. 
+
+#include <stdio.h>
+
+int main() {
+    double x;
+    int n;
+
+    // Get user input for x
+    printf("Enter a value for x: ");
+    scanf("%lf", &x);
+
+    // Get user input for n (1, 2, or 3)
+    printf("Enter the action (1, 2, or 3): ");
+    scanf("%d", &n);
+
+    // Perform the calculation based on the chosen action
+    switch (n) {
+        case 1:
+            // Action 1: Calculate x squared
+            printf("Result: %.2f\n", x * x);
+            break;
+
+        case 2:
+            // Action 2: Calculate the square root of x
+            if (x >= 0) {
+                printf("Result: %.2f\n", sqrt(x));
+            } else {
+                printf("Cannot calculate the square root of a negative number.\n");
+            }
+            break;
+
+        case 3:
+            // Action 3: Calculate the reciprocal of x
+            if (x != 0) {
+                printf("Result: %.2f\n", 1 / x);
+            } else {
+                printf("Cannot calculate the reciprocal of zero.\n");
+            }
+            break;
+
+        default:
+            printf("Invalid action. Please enter 1, 2, or 3.\n");
+            break;
+    }
+
+    return 0;
+}
+
+
+//27 Write a program to write a 1D array to a file  
+
+#include <stdio.h>
+
+int main() {
+    // Define your 1D array
+    int array[] = {1, 2, 3, 4, 5};
+
+    // Open a file for writing
+    FILE *file = fopen("output.txt", "w");
+
+    // Check if the file was opened successfully
+    if (file == NULL) {
+        printf("Error opening the file.\n");
+        return 1; // Exit the program with an error code
+    }
+
+    // Write the array elements to the file
+    for (int i = 0; i < sizeof(array) / sizeof(array[0]); ++i) {
+        fprintf(file, "%d\n", array[i]);
+    }
+
+    // Close the file
+    fclose(file);
+
+    printf("Array has been written to the file successfully.\n");
+
+    return 0;
+}
+
+
+//28  Create a function using reference and use it inside of main void circle_length (int *a) 
+
+#include <stdio.h>
+
+// Function to calculate the circumference of a circle
+void circle_length(int *radius) {
+    // Assuming π (pi) as 3.14159 for simplicity
+    double pi = 3.14159;
+    
+    // Calculate circumference using the formula: 2 * π * radius
+    double circumference = 2 * pi * (*radius);
+
+    // Update the radius value through the reference
+    *radius = circumference;
+}
+
+int main() {
+    int radius;
+
+    // Get user input for the radius
+    printf("Enter the radius of the circle: ");
+    scanf("%d", &radius);
+
+    // Call the function to calculate the circumference
+    circle_length(&radius);
+
+    // Print the result
+    printf("The circumference of the circle is: %.2f\n", (double)radius);
+
+    return 0;
+}
+
+
+// 29Using dynamic memory allocation create array of Students structure (size of array is 5) 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a Student
+struct Student {
+    char name[50];
+    int age;
+    float grade;
+};
+
+int main() {
+    // Define the size of the array
+    int size = 5;
+
+    // Allocate memory for an array of Students
+    struct Student *students = (struct Student *)malloc(size * sizeof(struct Student));
+
+    // Check if memory allocation is successful
+    if (students == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1; // Exit the program with an error code
+    }
+
+    // Input data for each student
+    for (int i = 0; i < size; ++i) {
+        printf("Enter details for student %d:\n", i + 1);
+        printf("Name: ");
+        scanf("%s", students[i].name); // Assuming names don't have spaces
+        printf("Age: ");
+        scanf("%d", &students[i].age);
+        printf("Grade: ");
+        scanf("%f", &students[i].grade);
+    }
+
+    // Display the information
+    printf("\nStudent Information:\n");
+    for (int i = 0; i < size; ++i) {
+        printf("Student %d:\n", i + 1);
+        printf("Name: %s\n", students[i].name);
+        printf("Age: %d\n", students[i].age);
+        printf("Grade: %.2f\n", students[i].grade);
+    }
+
+    // Free the dynamically allocated memory
+    free(students);
+
+    return 0;
+}
+
+//30 Write Program to Add Two monetary amounts using Structures.  
+
+#include <stdio.h>
+
+// Define a structure for representing monetary amounts
+struct Amount {
+    int dollars;
+    int cents;
+};
+
+// Function to add two monetary amounts
+struct Amount addAmounts(struct Amount amount1, struct Amount amount2) {
+    struct Amount result;
+
+    // Add dollars and cents separately
+    result.cents = amount1.cents + amount2.cents;
+    result.dollars = amount1.dollars + amount2.dollars;
+
+    // If cents exceed 100, adjust dollars and cents
+    if (result.cents >= 100) {
+        result.cents -= 100;
+        result.dollars++;
+    }
+
+    return result;
+}
+
+int main() {
+    // Input the first amount
+    struct Amount amount1;
+    printf("Enter the first amount (dollars cents): ");
+    scanf("%d %d", &amount1.dollars, &amount1.cents);
+
+    // Input the second amount
+    struct Amount amount2;
+    printf("Enter the second amount (dollars cents): ");
+    scanf("%d %d", &amount2.dollars, &amount2.cents);
+
+    // Add the amounts
+    struct Amount sum = addAmounts(amount1, amount2);
+
+    // Display the result
+    printf("Sum: $%d.%02d\n", sum.dollars, sum.cents);
+
+    return 0;
+}
+
+//31 Write program to Calculate Difference Between Two Weights using Structures
+
+#include <stdio.h>
+
+// Define a structure for representing weights
+struct Weight {
+    int pounds;
+    int ounces;
+};
+
+// Function to calculate the difference between two weights
+struct Weight calculateDifference(struct Weight weight1, struct Weight weight2) {
+    struct Weight difference;
+
+    // Convert both weights to total ounces
+    int totalOunces1 = weight1.pounds * 16 + weight1.ounces;
+    int totalOunces2 = weight2.pounds * 16 + weight2.ounces;
+
+    // Calculate the absolute difference in total ounces
+    int absoluteDifference = totalOunces1 > totalOunces2 ? totalOunces1 - totalOunces2 : totalOunces2 - totalOunces1;
+
+    // Convert the absolute difference back to pounds and ounces
+    difference.pounds = absoluteDifference / 16;
+    difference.ounces = absoluteDifference % 16;
+
+    return difference;
+}
+
+int main() {
+    // Input the first weight
+    struct Weight weight1;
+    printf("Enter the first weight (pounds ounces): ");
+    scanf("%d %d", &weight1.pounds, &weight1.ounces);
+
+    // Input the second weight
+    struct Weight weight2;
+    printf("Enter the second weight (pounds ounces): ");
+    scanf("%d %d", &weight2.pounds, &weight2.ounces);
+
+    // Calculate the difference between the weights
+    struct Weight difference = calculateDifference(weight1, weight2);
+
+    // Display the result
+    printf("Difference: %d pounds %d ounces\n", difference.pounds, difference.ounces);
+
+    return 0;
+}
+//32 Program to Check Even or Odd
+#include <stdio.h>
+int main() {
+ int num;
+ printf("Enter an integer: ");
+ scanf("%d", &num);
+ // True if num is perfectly divisible by 2
+ if(num % 2 == 0)
+ printf("%d is even.", num);
+ else
+ printf("%d is odd.", num);
+
+ return 0;
+}
+// The integer entered by the user is stored in a variable and printed on the screen.
+#include <stdio.h> int main() {
+int number;
+
+printf("Enter an integer: ");
+
+// reads and stores input scanf("%d", &number);
+
+// displays output
+printf("You entered: %d", number);
+
+return 0;
+}
+// 33 The user is asked to enter two integers. Then, the sum of these two integers is calculated and displayed on the screen.
+#include <stdio.h> 
+int main() {
+int number1, number2, sum;
+
+printf("Enter two integers: "); scanf("%d %d", &number1, &number2);
+
+// calculating sum
+sum = number1 + number2;
+
+printf("%d + %d = %d", number1, number2, sum); return 0;
+}
+// The product of two floating-point numbers entered by the user is calculated and printed on the screen.
+#include <stdio.h> int main() {
+double a, b, product; printf("Enter two numbers: "); scanf("%lf %lf", &a, &b);
+
+// Calculating product product = a * b;
+
+// Result up to 2 decimal point is displayed using %.2lf printf("Product = %.2lf", product);
+
+return 0;
+}
+// 34 How to find the ASCII value of a character
+#include <stdio.h> 
+int main() {
+char c;
+printf("Enter a character: "); scanf("%c", &c);
+
+// %d displays the integer value of a character
+// %c displays the actual character printf("ASCII value of %c = %d", c, c);
+
+return 0;
+}
+//35  Find the quotient and remainder when an integer is divided by another integer.
+#include <stdio.h>
+int main() {
+int dividend, divisor, quotient, remainder; printf("Enter dividend: ");
+scanf("%d", &dividend); printf("Enter divisor: "); scanf("%d", &divisor);
+
+// Computes quotient
+quotient = dividend / divisor;
+
+// Computes remainder
+remainder = dividend % divisor;
+
+printf("Quotient = %d\n", quotient); printf("Remainder = %d", remainder); return 0;
+}
+// 36 Evaluate the size of each variable using sizeof operator.
+#include<stdio.h> int main() {
+int intType; float floatType;
+double doubleType; char charType;
+
+// sizeof evaluates the size of a variable printf("Size of int: %zu bytes\n", sizeof(intType));
+printf("Size of float: %zu bytes\n", sizeof(floatType)); printf("Size of double: %zu bytes\n", sizeof(doubleType)); printf("Size of char: %zu byte\n", sizeof(charType));
+
+return 0;
+}
+// 37  to find the largest number among the three numbers entered by the user.
+#include <stdio.h> int main() {
+double n1, n2, n3;
+printf("Enter three different numbers: "); scanf("%lf %lf %lf", &n1, &n2, &n3);
+
+// if n1 is greater than both n2 and n3, n1 is the largest if (n1 >= n2 && n1 >= n3)
+printf("%.2f is the largest number.", n1);
+
+// if n2 is greater than both n1 and n3, n2 is the largest if (n2 >= n1 && n2 >= n3)
+printf("%.2f is the largest number.", n2);
+
+// if n3 is greater than both n1 and n2, n3 is the largest if (n3 >= n1 && n3 >= n2)
+printf("%.2f is the largest number.", n3);
+
+return 0;
+}
+#include <stdio.h> int main() {
+double n1, n2, n3;
+printf("Enter three numbers: "); scanf("%lf %lf %lf", &n1, &n2, &n3);
+
+// if n1 is greater than both n2 and n3, n1 is the largest if (n1 >= n2 && n1 >= n3)
+printf("%.2lf is the largest number.", n1);
+
+// if n2 is greater than both n1 and n3, n2 is the largest else if (n2 >= n1 && n2 >= n3)
+printf("%.2lf is the largest number.", n2);
+
+// if both above conditions are false, n3 is the largest else
+printf("%.2lf is the largest number.", n3);
+
+return 0;
+}
+ #include <stdio.h> int main() {
+double n1, n2, n3;
+printf("Enter three numbers: "); scanf("%lf %lf %lf", &n1, &n2, &n3);
+
+if (n1 >= n2) { if (n1 >= n3)
+printf("%.2lf is the largest number.", n1); else
+printf("%.2lf is the largest number.", n3);
+} else {
+if (n2 >= n3)
+printf("%.2lf is the largest number.", n2); else
+printf("%.2lf is the largest number.", n3);
+}
+
+return 0;
+}
+// In this example, you will learn to calculate the sum of natural numbers entered by the user.
+#include <stdio.h> int main() {
+int n, i, sum = 0;
+
+printf("Enter a positive integer: "); scanf("%d", &n);
+for (i = 1; i <= n; ++i) { sum += i;
+}
+
+printf("Sum = %d", sum); return 0;
+}
+#include <stdio.h> int main() {
+int n, i, sum = 0;
+printf("Enter a positive integer: "); scanf("%d", &n);
+i = 1;
+while (i <= n) { sum += i;
+++i;
+}
+printf("Sum = %d", sum); return 0;
+}
+// 38 Find Factorial of a Number Using For loop
+#include <stdio.h> int main() {
+int i, number, fact = 1; printf("Enter the number "); scanf("%d", &number);
+for (i = 1; i <= number; ++i) { fact *= i;
+}
+printf("Result = %d", fact); return 0;
+}
+// This program takes an integer from the user and calculates the number of digits. For example: If the user enters 2319, the output of the program will be 4.
+#include <stdio.h> int main() {
+long long n; int count = 0;
+printf("Enter an integer: "); scanf("%lld", &n);
+
+// iterate until n becomes 0
+// remove last digit from n in each iteration
+// increase count by 1 in each iteration
+do{
+n /= 10;	// n = n/10
+++count;
+} while (n != 0);
+
+printf("Number of digits: %d", count);
+}
+// Reverse the number entered by the user.
+#include <stdio.h> int main() {
+int n, rev = 0, remainder; printf("Enter an integer: "); scanf("%d", &n);
+while (n != 0) { remainder = n % 10;
+rev = rev * 10 + remainder; n /= 10;
+}
+printf("Reversed number = %d", rev); return 0;
+}
+// Check whether the number entered by the user is a palindrome or not.
+#include <stdio.h> int main() {
+int n, reversedN = 0, remainder, originalN; printf("Enter an integer: ");
+scanf("%d", &n); originalN = n;
+
+// reversed integer is stored in reversedN while (n != 0) {
+remainder = n % 10;
+reversedN = reversedN * 10 + remainder; n /= 10;
+}
+// This program takes an arithmetic operator +, -, *, / and two operands from the user. Then, it performs the calculation on the two operands depending upon the operator entered by the user.
+#include <stdio.h> int main() {
+char operator;
+double first, second;
+printf("Enter an operator (+, -, *,): "); scanf("%c", &operator);
+printf("Enter two operands: "); scanf("%lf %lf", &first, &second);
+
+switch (operator) case '+':
+printf("%.1lf break;
+case '-':
+printf("%.1lf break;
+case '*':
+printf("%.1lf break;
+case '/':
+printf("%.1lf break;
+// operator doesn't match any case constant default:
+printf("Error! operator is not correct");
+}
+
+return 0;
+}
+//39  The function myPower takes two integers (a base number and an exponent) and calculates the power.
+#include <stdio.h>
+long long myPower (int base, int exp); int main() {
+int base, exp;
+
+printf("Enter a base number: "); scanf("%d", &base); printf("Enter an exponent: "); scanf("%d", &exp);
+printf("Answer = %lld", myPower(base, exp)); return 0;
+}
+long long myPower (int base, int exp){ long long result = 1;
+while (exp != 0) { result *= base;
+--exp;
+}
+return result;
+
+}
+// To find all the prime numbers between the two integers, checkPrimeNumber() is created. This function checks whether a number is prime or not.
+#include <stdio.h>
+int checkPrimeNumber(int n); int main() {
+int n1, n2, i, flag;
+printf("Enter two positive integers: "); scanf("%d %d", &n1, &n2);
+printf("Prime numbers between %d and %d are: ", n1, n2); for (i = n1 + 1; i < n2; ++i) {
+
+// flag will be equal to 1 if i is prime flag = checkPrimeNumber(i);
+
+if (flag == 1) printf("%d ", i);
+}
+return 0;
+}
+// 40 Sum of Natural Numbers Using Recursion
+#include <stdio.h> int addNumbers(int n); int main() {
+int num;
+printf("Enter a positive integer: "); scanf("%d", &num);
+printf("Sum = %d", addNumbers(num)); return 0;
+}
+
+int addNumbers(int n) { if (n != 0)
+return n + addNumbers(n - 1); return n;
+}
+// Factorial of a Number Using Recursion
+#include<stdio.h>
+long int multiplyNumbers(int n); int main() {
+int n;
+printf("Enter a positive integer: "); scanf("%d",&n);
+printf("Factorial of %d = %ld", n, multiplyNumbers(n)); return 0;
+}
+
+long int multiplyNumbers(int n) { if (n>=1)
+return n*multiplyNumbers(n-1); return 1;
+}
+// Test Data :
+// Input the number of elements to be stored in the array :3 Input 3 elements in the array :
+// element - 0 : 45
+// element - 1 : 25
+// element - 2 : 21
+#include <stdio.h> void main()
+{
+int arr1[100]; int i, mx, mn, n;
+printf("Input the number of elements to be stored in the array :"); scanf("%d",&n);
+
+printf("Input %d elements in the array :\n",n); for(i=0;i<n;i++)
+{
+printf("element - %d : ",i);
+scanf("%d",&arr1[i]);
+}
+mx = arr1[0]; mn = arr1[0];
+for(i=1; i<n; i++)
+{
+if(arr1[i]>mx)
+{
+mx = arr1[i];
+}
+if(arr1[i]<mn)
+{
+mn = arr1[i];
+}
+}
+printf("Maximum element is : %d\n", mx); printf("Minimum element is : %d\n\n", mn);
+}
+//41  When you “transpose” a matrix, you take every element at the ith row and jth column of the matrix, and put it in the jth row and ith column. The formula for transpose is as follows:
+#include <stdio.h> int main() {
+// declare input and output array, and variables
+// for the number of rows and columns. there are
+// also two loop variables i and j.
+int a[10][10], b[10][10], rows, cols, i, j;
+
+printf("Enter the number of rows:\n"); scanf("%d", &rows);
+
+printf("Enter the number of columns:\n"); scanf("%d", &cols);
+
+// check if the number of rows/columns requested
+// is too small or too large
+if (rows < 1 || cols < 1 || rows > 10 || cols > 10) { printf("Invalid number of rows or columns\n");
+// exit the program return 0;
+}
+
+// ask for all the numbers for (i = 0; i < rows; i++) {
+for (j = 0; j < cols; j++) {
+// array index starts from 0, but row or
+// column number starts from 1.
+printf("Enter row %i, column %i:\n", i + 1, j + 1); scanf("%d", &a[i][j]);
+}
+}
+
+printf("The input matrix is:\n");
+
+// print the input matrix for (i = 0; i < rows; i++) {
+for (j = 0; j < cols; j++) { printf("%d ", a[i][j]);
+}
+
+// to seperate the rows printf("\n");
+// calculate the transpose of the matrix
+// order of rows and columns is swapped because
+// a[row][col] becomes b[col][row] for (i = 0; i < rows; i++) {
+for (j = 0; j < cols; j++) { b[j][i] = a[i][j];
+}
+}
+
+printf("Transpose of the matrix is:\n");
+
+// print the transpose.
+// number of rows in input matrix becomes number of
+// columns in the output matrix; similarly, number
+// of columns in input matrix becomes number of
+// columns in output matrix. this is why we have used
+// cols in the outer loop and rows in the inner loop for (i = 0; i < cols; i++) {
+for (j = 0; j < rows; j++) { printf("%d ", b[i][j]);
+}
+
+// to seperate the rows printf("\n");
+}
+
+return 0;
+}
+//42  Write a program in C to delete an element at a desired position from an array 
+#include <stdio.h> void main(){
+int arr1[50],i,pos,n;
+
+printf("\n\nDelete an element at desired position from an array :\n"); printf("	\n");
+
+printf("Input the size of array : "); scanf("%d", &n);
+/* Stored values into the array*/
+printf("Input %d elements in the array in ascending order:\n",n);
+
+for(i=0;i<n;i++) {
+printf("element - %d : ",i);
+scanf("%d",&arr1[i]);
+}
+
+printf("\nInput the position where to delete: "); scanf("%d",&pos);
+
+for (int i = pos - 1; i < n; i++) {
+arr1[i] =arr1[i + 1];
+}
+
+printf("\nThe new list is : "); for(i=0;i<n;i++) {
+printf(" %d",arr1[i]);
+}
+printf("\n\n");
+}
+
+for (int i = 0; i < 12-1; i++) { printf("%d ",myMatrix[i]);
+}
+return 0;
+}
+//43  Write a program in C to sort elements of an array in ascending order.
+#include <stdio.h>
+
+void main()
+{
+int arr1[100]; int n, i, j, tmp;
+
+printf("\n\nsort elements of array in ascending order :\n "); printf("	\n");
+
+printf("Input the size of array : "); scanf("%d", &n);
+
+printf("Input %d elements in the array :\n",n); for(i=0;i<n;i++)
+{
+printf("element - %d : ",i);
+scanf("%d",&arr1[i]);
+}
+
+for(i=0; i<n; i++)
+{
+for(j=i+1; j<n; j++)
+{
+if(arr1[j] <arr1[i])
+{
+tmp = arr1[i]; arr1[i] = arr1[j]; arr1[j] = tmp;
+}
+}
+}
+printf("\nElements of array in sorted ascending order:\n"); for(i=0; i<n; i++)
+{
+printf("%d ", arr1[i]);
+}
+printf("\n\n");
+}
+// 44 Write a program in C to find the missing number in a given array. There are no duplicates in the list.
+#include <stdio.h>
+
+int main()
+{
+int i, sum =0;
+int arr1[] = {1, 3, 4, 2, 5, 6, 9, 8};
+int n;
+int ctr = sizeof(arr1)/sizeof(arr1[0]); n = ctr + 1;
+printf("The given array is : ");
+
+for(i = 0; i < ctr; i++) { printf("%d ", arr1[i]);
+}
+printf("\n");
+
+for(i = 0; i < ctr; i++) { sum = sum + arr1[i];
+}
+
+printf("The missing number is : %d \n", n*(n+1)/2 - sum); return 0;
+}
+//  45Check whether an array is subset of another array
+#include <stdio.h>
+
+int main()
+{
+int arr1[] = {4, 8, 7, 11, 6, 9, 5, 0, 2};
+int arr2[] = {5, 4, 2, 0, 6};
+int n1 = sizeof(arr1)/sizeof(arr1[0]); int isSubset=1, j=0;
+int n2 = sizeof(arr2)/sizeof(arr2[0]);
+//		print first array printf("The given first array is : "); for(int i = 0; i < n1; i++)
+{
+printf("%d ", arr1[i]);
+}
+printf("\n");
+//		print second array printf("The given second array is : "); for(int i = 0; i < n2; i++)
+{
+printf("%d ", arr2[i]);
+}
+printf("\n");
+
+
+for (int i = 0; i < n2; i++)
+{
+for (j = 0; j < n1; j++)
+{
+if(arr2[i] == arr1[j]) break;
+}
+if(j == n1) isSubset = 0;
+}
+//
+if(isSubset)
+printf("The second array is the subset of first array."); else
+printf("The second array is not a subset of first array");
+
+return 0;
+}
+// 46 Write a program in C to add two numbers using pointers
+#include <stdio.h>
+ 
+int
+{
+ 
+ 
+main()
+
+int fno, sno,
+ 
+
+
+*ptr,
+ 
+
+
+*qtr, sum;
+ 
+printf("\n\n Pointer : Add two numbers :\n"); printf("	\n");
+printf(" Input the first number : ");
+scanf("%d", &fno);
+printf(" Input the second number : ");
+scanf("%d", &sno);
+= &fno;
+= &sno;
+
+ 
+  sum =
+ 
+*ptr +
+ 
+*qtr;
+ 
+
+printf(" The sum of the entered numbers is : %d\n\n",sum);
+
+return 0;
+}
+//47  Find the maximum number between two numbers	
+#include <stdio.h>
+ 
+void
+{
+ 
+main()
+ 
+int fno,sno,*ptr1=&fno,*ptr2=&sno;
+printf("\n\n Pointer : Find the maximum number between two numbers :\n"); printf("	\n");
+
+printf(" Input the first number : "); scanf("%d", ptr1);
+printf(" Input the second number : "); scanf("%d", ptr2);
+
+
+if(*ptr1>*ptr2) {
+printf("\n\n %d is the maximum number.\n\n",*ptr1);
+}
+else {
+printf("\n\n %d is the maximum number.\n\n",*ptr2);
+}
+ return 0;
+}
+// 48 Store and retrieve elements from an array
+#include <stdio.h>
+ 
+int
+{
+ 
+ 
+main()
+
+int arr1[25], i,n;
+printf("\n\n Pointer : Store and retrieve elements from an array :\n"); printf("	\n");
+printf(" Input the number of elements to store in the array :"); scanf("%d",&n);
+ 
+printf(" Input %d number of elements in the array :\n",n); for(i=0;i<n;i++) {
+printf(" element - %d : ",i);
+scanf("%d",arr1+i);
+}
+printf(" The elements you entered are : \n"); for(i=0;i<n;i++) {
+printf(" element - %d : %d \n",i,*(arr1+i));
+}
+return 0;
+}
+//  49 cubeByValue function cubes its argument and passes the new value back to main using a return statement
+#include <stdio.h>
+int cubeByValue( int n ); /* prototype */ int main( void ) {
+int number = 5; /* initialize number */
+printf( "The original value of number is %d", number );
+/* pass number by value to cubeByValue */ number = cubeByValue( number );
+printf( "\nThe new value of number is %d\n", number ); return 0; /* indicates successful termination */
+} /* end main */
+
+/* calculate and return cube of integer argument */int cubeByValue( int n ) {
+return n * n * n; /* cube local variable n and return result */
+} /* end function cubeByValue */
+//50  cubeByReference takes as a parameter a pointer
+#include <stdio.h>
+void cubeByReference( int *nPtr ); /* prototype */
+int main( void ) {
+int number = 5; /* initialize number */
+printf( "The original value of number is %d", number );
+
+/* pass address of number to cubeByReference */cubeByReference( &number
+);
+
+printf( "\nThe new value of number is %d\n", number );return 0; /* indicates successful termination */
+} /* end main */
+/* calculate cube of *nPtr; modifies variable number in main
+*/void cubeByReference( int *nPtr ) {
+*nPtr = *nPtr * *nPtr * *nPtr; /* cube *nPtr */
+} /* end function cubeByReference */
+// 51Length of a string without using the strlen() function
+#include <stdio.h>
+int myStrlen (const char *string); int main() {
+char s[] = "Programming is fun";
+printf("Length of the string: %d", myStrlen(s)); return 0;
+}
+int myStrlen (const char *string) { int i;
+for (i = 0; *(string + i) != '\0'; ++i); return i;
+}
+//52  Concatenate two strings without using the strcat() function
+#include <stdio.h>
+
+char *myStrcat (char *dest, char *source); int main ()
+{
+char s1[100] = "programming ", s2[] = "is awesome";
+
+printf ("After concatenation: "); puts (myStrcat (s1, s2));
+return 0;
+}
+
+char *myStrcat (char *dest, char *src)
+{
+int length, j;
+// store length of dest in the length variable length = 0; while (*(dest + length) != '\0')
+{
+++length;
+}
+
+// concatenate src to dest
+for (j = 0; *(src + j) != '\0'; ++j, ++length)
+{
+*(dest + length) = *(src + j);
+}
+
+// terminating the dest string
+*(dest + length) = '\0'; return dest;
+}
+//53  Find the Frequency of a Character
+#include <stdio.h>
+int myFreq (char c, const char *string); int main() {
+char str[1000], ch;
+
+printf("Enter a string: "); fgets(str, sizeof(str), stdin);
+
+printf("Enter a character to find its frequency: "); scanf("%c", &ch);
+
+printf("Frequency of %c = %d", ch, myFreq(ch, str)); return 0;
+}
+
+int myFreq (char ch, const char *string) { int count = 0;
+for (int i = 0; *(string+i) != '\0'; ++i) { if (ch == *(string+i))
+++count;
+}
+return count;
+}
+//54  Remove Characters in String Except Alphabets
+#include <stdio.h>
+void onlyAlphabet (char *line); int main ()
+{
+char str[1000], ch;
+printf ("Enter a string: "); fgets (str, sizeof (str), stdin); onlyAlphabet (str);
+
+printf ("New line is %s", str); return 0;
+}
+void onlyAlphabet (char *line)
+{
+for (int i = 0, j; *(line + i) != '\0'; ++i)
+{
+// enter the loop if the character is not an alphabet
+// and not the null character
+while (!(*(line + i) >= 'a' && *(line + i) <= 'z')
+&& !(*(line + i) >= 'A' && *(line + i) <= 'Z')
+&& !(*(line + i) == '\0'))
+{
+for (j = i; *(line + j) != '\0'; ++j)
+{
+
+// if jth element of line is not an alphabet,
+// assign the value of (j+1)th element to the jth element
+*(line + j) = *(line + j + 1);
+}
+*(line + j) = '\0';
+}
+}
+
+}
+//55 Creating a dynamic array with float elements and finding their sum
+#include <stdio.h> #include <stdlib.h> int main() {
+int num; float sum;
+float *data;
+printf("Enter the total number of elements: "); scanf("%d", &num);
+
+// Allocating memory for num elements
+data = (float *)malloc(num*sizeof(float)); if (data == NULL) {
+printf("Error!!! memory not allocated."); exit(0);
+}
+
+// Storing numbers entered by the user. for (int i = 0; i < num; ++i) {
+printf("Enter Number %d: ", i + 1); scanf("%f", data + i);
+}
+
+// Finding the sum
+for (int i = 0; i < num; ++i) { sum+=*(data + i);
+}
+printf("Sum = %.2f", sum); free(data);
+
+return 0;
+}
+//56  Store Information of a Student Using Structure
+#include <stdio.h> struct student {
+char name[50]; int roll; float marks;
+} s;
+
+int main() {
+printf("Enter information:\n"); printf("Enter name: ");
+fgets(s.name, sizeof(s.name), stdin);
+
+printf("Enter roll number: "); scanf("%d", &s.roll); printf("Enter marks: "); scanf("%f", &s.marks);
+
+printf("Displaying Information:\n"); printf("Name: ");
+printf("%s", s.name);
+printf("Roll number: %d\n", s.roll); printf("Marks: %.1f\n", s.marks);
+return 0;
+}
+
+//57  Store Information of Students Using Structure
+#include <stdio.h> struct student {
+char firstName[50]; int roll;
+float marks;
+} s[5];
+
+int main() {
+int i;
+printf("Enter information of students:\n");
+
+// storing information for (i = 0; i < 5; ++i) {
+s[i].roll = i + 1;
+printf("\nFor roll number%d,\n", s[i].roll); printf("Enter first name: ");
+scanf("%s", s[i].firstName); printf("Enter marks: "); scanf("%f", &s[i].marks);
+}
+printf("Displaying Information:\n\n");
+
+// displaying information for (i = 0; i < 5; ++i) {
+printf("\nRoll number: %d\n", i + 1); printf("First name: "); puts(s[i].firstName);
+printf("Marks: %.1f", s[i].marks); printf("\n");
+}
+return 0;
+}
+//58 Add Two Distances (in meter-centimeter system) using Structures
+#include <stdio.h> struct Distance {
+int meter; float cm;
+} d1, d2, result;
+
+int main() {
+// take first distance input printf("Enter 1st distance\n"); printf("Enter meter: "); scanf("%d", &d1.meter);
+printf("Enter cm: ");
+scanf("%f", &d1.cm);
+
+// take second distance input printf("\nEnter 2nd distance\n"); printf("Enter meter: "); scanf("%d", &d2.meter);
+printf("Enter cm: ");
+scanf("%f", &d2.cm);
+
+// adding distances
+result.meter = d1.meter + d2.meter; result.cm = d1.cm + d2.cm;
+
+// convert cm to meter if greater than 100 while (result.cm >= 100.0) {
+result.cm = result.cm - 100.0;
+++result.meter;
+}
+printf("\nSum of distances = %dm-%.1fcm", result.meter, result.cm); return 0;
+}
+// 59 Write a Sentence to a File
+#include <stdio.h> #include <stdlib.h>
+
+int main() {
+char sentence[1000];
+// creating file pointer to work with files FILE *fptr;
+
+// opening file in writing mode fptr = fopen("program.txt", "w");
+// exiting program if (fptr == NULL) {
+printf("Error!"); exit(1);
+}
+printf("Enter a sentence:\n"); fgets(sentence, sizeof(sentence), stdin); fprintf(fptr, "%s", sentence); fclose(fptr);
+return 0;
+}
+//60  to read name and marks of n number of students and store them in a file.
+#include <stdio.h> int main()
+{
+char name[50];
+int marks, i, num;
+
+printf("Enter number of students: "); scanf("%d", &num);
+
+FILE *fptr;
+fptr = (fopen("C:\\student.txt", "w")); if(fptr == NULL)
+{
+printf("Error!"); exit(1);
+}
+
+for(i = 0; i < num; ++i)
+{
+printf("For student%d\nEnter name: ", i+1); scanf("%s", name);
+
+printf("Enter marks: "); scanf("%d", &marks);
+ 
+fprintf(fptr,"\nName: %s \nMarks=%d \n", name, marks);
+}
+fclose(fptr); return 0;
+}
+//61 to read name and marks of n number of students from and store them in a file. If the file previously exits, add the information to the file.
+
+#include <stdio.h> int main()
+{
+char name[50];
+int marks, i, num;
+
+printf("Enter number of students: "); scanf("%d", &num);
+FILE *fptr;
+fptr = (fopen("C:\\student.txt", "a")); if(fptr == NULL)
+{
+printf("Error!"); exit(1);
+}
+
+for(i = 0; i < num; ++i)
+{
+printf("For student%d\nEnter name: ", i+1); scanf("%s", name);
+printf("Enter marks: "); scanf("%d", &marks);
+fprintf(fptr,"\nName: %s \nMarks=%d \n", name, marks);
+}
+fclose(fptr); return 0;
+}
+// 62  to write all the members of an array of structures to a file using fwrite(). Read the array from the file and display on the screen.
+#include <stdio.h> struct student
+{
+char name[50]; int height;
+};
+int main(){
+struct student stud1[5], stud2[5]; FILE *fptr;
+int i;
+
+fptr = fopen("file.txt","wb"); for(i = 0; i < 5; ++i)
+{
+printf("Enter name: "); scanf("%s",stud1[i].name);
+
+printf("Enter height: "); scanf("%d", &stud1[i].height);
+}
+
+fwrite(stud1, sizeof(stud1), 1, fptr); fclose(fptr);
+
+fptr = fopen("file.txt", "rb"); fread(stud2, sizeof(stud2), 1, fptr); for(i = 0; i < 5; ++i)
+{
+printf("Name: %s\nHeight: %d", stud2[i].name, stud2[i].height);
+}
+fclose(fptr);
+}
+// 63 Calculate Difference Between Two Time Periods
+#include <stdio.h> struct TIME {
+int seconds; int minutes; int hours;
+};
+
+void differenceBetweenTimePeriod(struct TIME t1,
+struct TIME t2, struct TIME *diff);
+
+int main() {
+struct TIME t1, t2, diff;
+
+printf("Enter the t1 time. \n"); printf("Enter hours, minutes and seconds: ");
+scanf("%d %d %d", &t1.hours,&t1.minutes, &t1.seconds);
+
+printf("Enter the t2 time. \n"); printf("Enter hours, minutes and seconds: "); scanf("%d %d %d", &t2.hours,&t2.minutes, &t2.seconds);
+
+// Difference between t1 and t2 time differenceBetweenTimePeriod(t1, t2, &diff);
+printf("\nTime Difference: %d:%d:%d - ", t1.hours,t1.minutes, t1.seconds); printf("%d:%d:%d ", t2.hours, t2.minutes, t2.seconds);
+printf("= %d:%d:%d\n", diff.hours, diff.minutes, diff.seconds); return 0;
+}
+
+// Computes difference between time periods void differenceBetweenTimePeriod(struct TIME t1,
+struct TIME t2, struct TIME
+*diff) { while (t2.seconds > t1.seconds) {
+--t1.minutes;
+t1.seconds += 60;
+}
+diff->seconds = t1.seconds - t2.seconds; while (t2.minutes > t1.minutes) {
+--t1.hours; t1.minutes += 60;
+}
+diff->minutes = t1.minutes - t2.minutes; diff->hours = t1.hours - t2.hours;
+}
+//64 C Program to illustrate how to use #define to declare constants 
+#include <stdio.h>
+
+// Defining macros with constant value #define PI 3.14159265359
+
+int main()
+{
+
+int radius = 21; int area;
+
+// Using macros to calculate area of circle area = PI * radius * radius;
+
+printf("Area of Circle of radius %d: %d", radius, area);
+
+return 0;
+}
+// 65 C Program to define the function like macros using 
+#include <stdio.h>
+
+// Defining parameterized macros with expression #define CIRCLE_AREA(r) (3.14 * r * r)
+#define SQUARE_AREA(s) (s * s)
+
+int main()
+{
+
+int radius = 21; int side = 5; int area;
+
+// Using macros to calculate areas by
+// passing argument
+area = CIRCLE_AREA(radius);
+printf("Area of Circle of radius %d: %d \n", radius, area);
+
+area = SQUARE_AREA(side);
+printf("Area of square of side %d: %d", side, area);
+
+return 0;
+}
+//66 Create function for adding two numbers
+#include <stdio.h>
+
+/* function statement */ int add(int a, int b);
+
+/* function definition */ int add(int a, int b) {
+return a + b;
+}
+
+int main() {
+int result = add(2, 3);
+printf("The result is %d\n", result); return 0;
+}
+// 67 Simple function for adding two numbers
+#include<stdio.h>
+
+/* function prototype */ int func(int, int);
+int main(void)
+{
+int result;
+/* calling a function named func */ result = func(10,20); printf("result = %d\n",result); return 0;
+}
+
+/* func definition goes here */ int func(int x, int y)
+{
+return x+y;
+}
+// 68 'Guess the number' game The random number should be in 1 to 100 range including. 
+#include <stdio.h>
+#include <stdlib.h> #include <time.h>
+
+int main() {
+// In order to generate random-like numbers, srand is usually initialized to some distinctive runtime value, like the value returned by function time.
+srand(time(NULL));
+// Generate the random number between 1 to 100 range including. int num = rand() % 100 + 1;
+int guess = 0;
+
+
+do {
+printf("Guess the number: ");
+scanf("%d", &guess); // Read the number from user.
+
+
+// Provide feedback to the user. if (num > guess)
+printf("Too low, go higher\n"); else if (num < guess)
+printf("Too high, go lower\n"); else
+printf("Correct! You have guessed the number after %d attempts.\n", attempts);
+} while (guess != num);
+
+
+return 0;
+}
+// 69 Function that calculates the sum of a variable number of integers
+#include <stdarg.h>
+#include <stdio.h>
+
+// Variadic function to add numbers int AddNumbers(int n, ...)
+{
+int Sum = 0;
+
+// Declaring pointer to the
+// argument list va_list ptr;
+
+// Initializing argument to the
+// list pointer va_start(ptr, n);
+
+for (int i = 0; i < n; i++)
+
+// Accessing current variable
+// and pointing to next one Sum += va_arg(ptr, int);
+
+// Ending argument list traversal va_end(ptr);
+
+return Sum;
+}
+
+// Driver Code int main()
+{
+printf("\n\n Variadic functions: \n");
+
+// Variable number of arguments printf("\n 1 + 2 = %d ",
+AddNumbers(2, 1, 2));
+
+printf("\n 3 + 4 + 5 = %d ",
+AddNumbers(3, 3, 4, 5));
+
+printf("\n 6 + 7 + 8 + 9 = %d ",
+AddNumbers(4, 6, 7, 8, 9)); printf("\n");
+return 0;
+}
+// 70 Variadic function LargestNumber()
+#include <stdarg.h>
+#include <stdio.h>
+
+// Variadic function to find the largest number int LargestNumber(int n, ...)
+{
+// Declaring pointer to the
+// argument list va_list ptr;
+
+// Initializing argument to the
+// list pointer va_start(ptr, n);
+
+int max = va_arg(ptr, int); for (int i = 0; i < n-1; i++) {
+// Accessing current variable
+// and pointing to next
+int temp = va_arg(ptr, int); max = temp > max ? temp : max;
+}
+
+// End of argument list traversal va_end(ptr);
+
+return max;
+}
+
+// Driver Code int main()
+{
+printf("\n\n Variadic functions: \n");
+
+// Variable number of arguments printf("\n %d ",
+LargestNumber(2, 1, 2));
+
+printf("\n %d ",
+LargestNumber(3, 3, 4, 5));
+
+printf("\n %d ",
+LargestNumber(4, 6, 7, 8, 9)); printf("\n");
+return 0;
+}
+
